@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
+const dbConnection = require('./dbcontroller/db');
 
 app.use(express.json());
 app.use(bodyParser.json());
@@ -17,5 +18,9 @@ app.get('/home',(req,res)=>{
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT,()=>{
+
     console.log(`Server listening on port ${PORT}`);
+    
 });
+
+dbConnection();
