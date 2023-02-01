@@ -1,19 +1,23 @@
-//this is a commet to check the github connection
 const express = require('express');
 const app = express();
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
-const dbConnection = require('./dbcontroller/db');
+const dbConnection = require('./configurations/dbController');
+const cors = require('cors')
 
+app.use(cors());
+app.use(bodyParser.urlencoded());
 app.use(express.json());
 app.use(bodyParser.json());
 dotenv.config();
 
-app.get('/home',(req,res)=>{
+//Connection to MongoDb
+dbConnection();
 
-    res.send('Home page');
 
-});
+app.use('/api',require('./routes'));
+
+
 
 const PORT = process.env.PORT || 3000;
 
@@ -23,4 +27,4 @@ app.listen(PORT,()=>{
     
 });
 
-dbConnection();
+
