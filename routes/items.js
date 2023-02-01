@@ -1,12 +1,11 @@
 const express = require('express');
 const router = express.Router();
+const {multerUploader, dataUri} = require('../middlewares/multerUploader');
+const {cloudinaryConfig} = require('../middlewares/cloudinaryConfig');
+const {postItem, getItem} = require('../controllers/items');
 
-router.get('/',(req,res)=>{
+router.post('/',multerUploader,cloudinaryConfig,postItem);
 
-    const something = ['Items route'];
-
-    res.send({something});
-
-});
+router.get('/',getItem);
 
 module.exports = router;

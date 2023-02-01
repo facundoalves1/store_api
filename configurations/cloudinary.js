@@ -1,6 +1,7 @@
 const cloudinary = require('cloudinary').v2;
+const upload = require('cloudinary').v2.uploader.upload;
 
-const cloudinaryConfg = ()=>{
+const cloudinaryConfig = ()=>{
 
     const COUD_NAME = process.env.COUD_NAME;
     const API_KEY = process.env.API_KEY;
@@ -17,4 +18,4 @@ const cloudinaryConfg = ()=>{
 
 }
 
-module.exports = cloudinaryConfg;
+module.exports = {cloudinaryConfig,upload};
