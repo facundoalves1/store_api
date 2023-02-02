@@ -14,11 +14,10 @@ dotenv.config();
 //Connection to MongoDb
 dbConnection();
 
-
+//Calling the routes
 app.use('/api',require('./routes'));
 
-
-
+//Server Setup
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT,()=>{
