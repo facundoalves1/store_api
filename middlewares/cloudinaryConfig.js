@@ -1,5 +1,6 @@
-const cloudinary = require('cloudinary').v2;
 const dotenv = require('dotenv');
+const cloudinary = require('cloudinary').v2;
+const {getData} = require('../utils/cloudinaryUtils');
 
 dotenv.config();
 
@@ -23,29 +24,23 @@ const cloudinaryConfig = (req,res,next)=>{
 }
 
 const cloudinaryUpload = async(req,res,next)=>{
-  /*
-  const getData = async()=>{
+   
+  const {base64Format} = req.body
 
-    let url = [];
-    const {base64Format} = req.body;
+  req.body.imageUrl = [];
 
-    base64Format.forEach(element => {
-      cloudinary.uploader.upload(element,{resource_type:'image'},(err,result)=>{
-        if(!err){
-          url.push(result.secure_url);
-        }else{
-          console.log(err);
-        };
-      });
-    });
-    return url;
-  }; 
+  async function populateImageUrl(){
 
-  req.body.imageUrl = await getData();
-  await next();
-  */
- const {base64Format} = req.body
+    for(let i=0; i < base64Format.length; i++){
+      req.body.imageUrl.push(await getData(base64Format[i]));
+    }
 
+  }
+
+  await populateImageUrl();
+
+
+ /*
  try{
 
   await cloudinary.uploader.upload(base64Format[0],{resource_type:'image'},(err,result)=>{
@@ -67,8 +62,8 @@ const cloudinaryUpload = async(req,res,next)=>{
   console.log(err);
 
  }
-
- next();
+ */
+  next();
  
 };
 
