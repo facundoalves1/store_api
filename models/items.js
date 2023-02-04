@@ -3,11 +3,13 @@ const mongoose = require('mongoose');
 const ItemSchema = new mongoose.Schema({
 
     name:{
-        type: String
+        type: String,
+        required: true
     },
     
     price:{
-        type: String
+        type: String,
+        required: true
     },
 
     tags:{
@@ -19,7 +21,8 @@ const ItemSchema = new mongoose.Schema({
     },
 
     quantity:{
-        type: String
+        type: String,
+        required: true
     }
 
 },{
