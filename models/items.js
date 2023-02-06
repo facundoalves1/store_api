@@ -12,16 +12,7 @@ const ItemSchema = new mongoose.Schema({
         required: true
     },
 
-    tags:{
-        type: Array
-    },
-
-    imageUrl:{
-        type: Array,
-        required: true
-    },
-
-    quantity:{
+    cost:{
         type: String,
         required: true
     },
@@ -39,18 +30,27 @@ const ItemSchema = new mongoose.Schema({
         required: true
     },
 
-    cost:{
-        type: String,
+    quantity:{
+        type: Number,
         required: true
     },
 
     size:{
         type: Object,
         required: true
-    }
+    },
+
+    tags:{
+        type: Array
+    },
+
+    imageUrl:{
+        type: Array,
+        required: true
+    },
 
 },{
     timestamps: true
 });
 
-module.exports = mongoose.model('itemsSchema',ItemSchema);
+module.exports = mongoose.model('itemSchema',ItemSchema);

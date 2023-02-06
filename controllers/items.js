@@ -1,7 +1,13 @@
 const itemSchema = require('../models/items');
+const {quantityCalulator} = require('../utils/itemsUtils');
 
 const postItem = async(req,res)=>{
-    console.log(req.body.imageUrl);
+    
+    const {size} = req.body;
+
+    //Auto calculate the quantity of the items.
+    req.body.quantity = quantityCalulator(size);
+
     try{
         
         const data = await itemSchema.create(req.body);
@@ -10,7 +16,7 @@ const postItem = async(req,res)=>{
     }catch(e){
 
         console.log(e);
-        res.send({error:e,message:"Se rompió todo querido :c"})
+        res.status(400).send(e);
 
     }
     
