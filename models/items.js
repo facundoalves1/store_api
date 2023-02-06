@@ -17,11 +17,35 @@ const ItemSchema = new mongoose.Schema({
     },
 
     imageUrl:{
-        type: Array
+        type: Array,
+        required: true
     },
 
     quantity:{
         type: String,
+        required: true
+    },
+
+    category:{
+        type: String,
+    },
+
+    subcategory:{
+        type: String
+    },
+
+    season:{
+        type: String,
+        required: true
+    },
+
+    cost:{
+        type: String,
+        required: true
+    },
+
+    size:{
+        type: Object,
         required: true
     }
 

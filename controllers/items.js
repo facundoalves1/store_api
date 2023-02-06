@@ -17,12 +17,17 @@ const postItem = async(req,res)=>{
 };
     
 
-const getItem = async(req,res)=>{
+const getItems = async(req,res)=>{
 
+    const {category} = req.query;
+    const {subcategory} = req.query;
+    const {season} = req.query;
+    const {size} = req.query;
 
     try{
         
         const data = await itemSchema.find({});
+        console.log(`${category} ${subcategory} ${season} ${size}`);
         res.status(201).send(data);
 
     }catch(err){
@@ -34,4 +39,4 @@ const getItem = async(req,res)=>{
 };
 
 
-module.exports = {postItem,getItem};
+module.exports = {postItem,getItems};
