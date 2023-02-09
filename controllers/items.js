@@ -1,13 +1,7 @@
 const itemSchema = require('../models/items');
-const {quantityCalulator} = require('../utils/itemsUtils');
 
 const postItem = async(req,res)=>{
-    
-    const {size} = req.body;
-
-    //Auto calculate the quantity of the items.
-    req.body.quantity = quantityCalulator(size);
-
+       
     try{
         
         const data = await itemSchema.create(req.body);
@@ -25,20 +19,17 @@ const postItem = async(req,res)=>{
 
 const getItems = async(req,res)=>{
 
-    const {category} = req.query;
-    const {subcategory} = req.query;
-    const {season} = req.query;
-    const {size} = req.query;
+    const {query} = req;
 
     try{
         
-        const data = await itemSchema.find({});
-        console.log(`${category} ${subcategory} ${season} ${size}`);
-        res.status(201).send(data);
+        const data = await itemSchema.find(query);
+        console.log(query)
+        res.status(200).send(data);
 
     }catch(err){
 
-        res.send({error:err, message: "todo roto amigo"});
+        res.status(400).send(err);
 
     }
     

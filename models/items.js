@@ -37,7 +37,18 @@ const ItemSchema = new mongoose.Schema({
 
     size:{
         type: Object,
-        required: true
+        required: true,
+        validate:{
+            validator: (req)=>{
+                
+                const expectedKeys = ["XXL","XL","L","M","S","XS","36","38","40","42","44","46"];
+
+                const hasExpectedKeys = expectedKeys.every(element=> element in req);
+
+                return (hasExpectedKeys) ? true : false;
+            },
+            message: "SIZE_KEY_MISSING"
+        }
     },
 
     tags:{
