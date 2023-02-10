@@ -29,6 +29,7 @@ const cloudinaryUpload = async(req,res,next)=>{
 
   req.body.imageUrl = [];
 
+  //Upload each one of the images to cloudinary and populate the urlImage field
   async function populateImageUrl(){
 
     for(let i=0; i < base64Format.length; i++){

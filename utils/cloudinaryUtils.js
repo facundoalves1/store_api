@@ -1,5 +1,10 @@
 const cloudinary = require('cloudinary').v2;
 
+/**
+ * Should receive a file in base64 string format to upload to cloudinary
+ * @param {*} base64 
+ * @returns 
+ */
 const getData = async(base64)=>{
 
     let data;
@@ -10,24 +15,23 @@ const getData = async(base64)=>{
   
             if(!err){
             data = result.secure_url;
-            }else{
-            console.log(err + ' Cloudinary (Inside)');
+            }
+            else{
+
+            console.log(err + 'CLOUDINARY_UPLOAD_ERROR');
+
             }
     
         });
   
     }catch(err){
   
-      console.log(err + " Cloudinary");
+      console.log(err + "CLOUDINARY_UPLOAD_ERROR");
   
     }
   
-    if(data){
-      return data;
-    }else{
-      console.log("No data");
-    }
-  
+    return data;
+
 };
 
 module.exports = {getData};

@@ -14,5 +14,4 @@ const dataHandler = (req,res,next)=>{
     
 };
 
-
 module.exports = {dataHandler};

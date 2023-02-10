@@ -9,7 +9,6 @@ const postItem = async(req,res)=>{
 
     }catch(e){
 
-        console.log(e);
         res.status(400).send(e);
 
     }
@@ -24,16 +23,19 @@ const getItems = async(req,res)=>{
     try{
         
         const data = await itemSchema.find(query);
-        console.log(query)
         res.status(200).send(data);
 
-    }catch(err){
+    }catch(e){
 
-        res.status(400).send(err);
+        res.status(400).send(e);
 
     }
     
 };
+
+const updateItem = async(req,res)=>{};
+
+const deleteItem = async(req,res)=>{};
 
 
 module.exports = {postItem,getItems};

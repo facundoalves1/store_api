@@ -9,7 +9,7 @@ const multerUploaderSingle = upload.single('image');
 const multerUploaderMultiple = upload.array('images');
 
 //Format base64 string to upload to Cloudinary
-const format = (req,res,next)=>{
+const formatToBase64 = (req,res,next)=>{
 
     const {files} = req;
     let arrOfFiles = [];
@@ -30,7 +30,7 @@ const format = (req,res,next)=>{
 
     }else{
 
-        res.send("There is no file, error in multerUploader file");
+        res.status(400).send("MULTER_FILE_MISSING");
 
     }
     
@@ -38,4 +38,4 @@ const format = (req,res,next)=>{
 
 };
 
-module.exports = {multerUploaderMultiple,multerUploaderSingle,format};
+module.exports = {multerUploaderMultiple,multerUploaderSingle,formatToBase64};
